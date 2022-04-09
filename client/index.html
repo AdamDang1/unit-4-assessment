@@ -16,9 +16,8 @@
             });
       };
     </script>
-    <button id="fortuneButton">Get Your Future Told!</button>
+    <button id="fortuneButton">Confucius Says</button>
 
-    <script src="https://unpkg.com/axios/dist/axios.min.js""></script>
     <script>
       document.getElementById("fortuneButton").onclick = function () {
         axios.get("http://localhost:4000/api/fortune/")
@@ -28,5 +27,17 @@
             });
       };
     </script>
+    <form id="newCompliment">
+      <input type="text" placeholder="Add Your Own Compliment!"/>
+
+      <script>
+        document.getElementById("newCompliment").onclick = function () {
+          axios.post("http://localhost:4000/api/compliment/")
+          .then(function (response) {
+            const data = response.data;
+          })
+        }
+      </script>
+    </form>
   </body>
 </html>

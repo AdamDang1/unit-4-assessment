@@ -34,6 +34,12 @@ app.get("/api/fortune", (req, res) => {
   let randomFortune = fortunes[randomFortuneIndex];
 
   res.status(200).send(randomFortune);
-})
+});
+
+const {
+  createCompliment
+} = require("./controller");
+
+app.post("/api/compliment", createCompliment); 
 
 app.listen(4000, () => console.log("Server running on 4000"));
