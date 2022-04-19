@@ -27,17 +27,64 @@
             });
       };
     </script>
-    <form id="newCompliment">
-      <input type="text" placeholder="Add Your Own Compliment!"/>
+    <button id="motivationButton">Your Daily Motivation</button>
 
-      <script>
-        document.getElementById("newCompliment").onclick = function () {
-          axios.post("http://localhost:4000/api/compliment/")
-          .then(function (response) {
-            const data = response.data;
-          })
-        }
-      </script>
+    <script>
+      document.getElementById("motivationButton").onclick = function () {
+        axios.get("http://localhost:4000/api/motivation/")
+            .then(function (response) {
+              const data = response.data;
+              alert(data);
+            });
+      };
+    </script>
+    <form id="newComplimentForm">
+      <input type="text" placeholder="Add Your Own Compliment!"/>
+      <button type="Submit">Submit</button>
     </form>
+
+    <script>
+      document.getElementById("newComplimentForm").submit = function (e) {
+        e.preventDefault();
+        axios.post("http://localhost:4000/api/compliment/")
+            .then(function (response) {
+              const data = response.data;
+              alert(data);
+            });
+      };
+    </script>
+    <form id="newMotivationForm">
+      <input type="text" placeholder="Motivate Yourself!"/>
+      <button type="Submit">Submit</button>
+    </form>
+
+    <script>
+      document.getElementById("newMotivationForm").submit = function (e) {
+        e.preventDefault();
+        axios.post("http://localhost:4000/api/motivation/")
+            .then(function (response) {
+              const data = response.data;
+              console.log(data);
+            });
+      };
+    </script>
+    <form id="deleteMotivation">
+      <select name="Motivational Quotes">
+        <option value="The road to success and the road to failure are almost exactly the same.">The road to success and the road to failure are almost exactly the same.</option>
+        <option value="Success usually comes to those who are too busy looking for it.">Success usually comes to those who are too busy looking for it.</option>
+        <option value="I never dreamed about success. I worked for it.">"I never dreamed about success. I worked for it.</option>
+        <option value="Setting goals is the first step in turning the invisible into the visible.">Setting goals is the first step in turning the invisible into the visible.</option>
+      </select>
+    </form>
+
+    <script>
+      document.getElementById("deleteMotivation").onchange = function () {
+        axios.delete("http://localhost:4000/api/motivation/:id")
+            .then(function (response) {
+              const data = response.data;
+              console.log(data);
+            });
+      };
+    </script>
   </body>
 </html>
